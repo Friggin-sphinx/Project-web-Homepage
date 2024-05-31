@@ -1,0 +1,224 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Remove scroll bars */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Space Grotesk', sans-serif;
+    background: url('assets/bg.png') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    position: relative; /* Added to position the SVG container */
+}
+.cursor {
+    position: fixed;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%; /* Make it a full circle */
+    background-color: white; /* Fill the circle with white color */
+    pointer-events: none; /* Allow the cursor to pass through other elements */
+    transition: transform 0.1s ease-out; /* Smooth transition */
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference; /* Invert the color when hovering */
+    z-index: 9999; /* Ensure the cursor is on top */
+    will-change: transform; /* Utilize hardware acceleration */
+    backface-visibility: hidden; /* Improve rendering performance */
+    -webkit-backface-visibility: hidden; /* For Safari */
+    -moz-backface-visibility: hidden; /* For Firefox */
+}
+
+  
+.search-bar {
+    color: #909090;;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: bold;
+    padding: 8px 40px 8px 40px; /* Increase left padding for more space */
+    border-radius: 15px;
+    background: rgba(35, 35, 35, 0.90); /* Adjust corner radius as needed */
+    width: 300px; /* Adjust width as needed */
+    background-image: url('assets/Search.png'); /* Custom icon */
+    background-repeat: no-repeat;
+    background-position: 10px center; /* Adjust icon position */
+    background-size: 20px; /* Adjust icon size */
+    width: 401px;
+    height: 43px;
+    flex-shrink: 0;
+    font-size: large;
+    border: none; /* Remove default border */
+    outline: none;
+    
+    margin-left: 50px; /* Move the search bar further to the right */
+}
+.search-bar::before {
+    content: "";
+    position: absolute;
+    left: 30px; /* Adjust the distance from the left edge */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.search-bar::before {
+    content: "\1F50D"; /* Unicode for the magnifying glass icon */
+    font-size: 20px;
+    color: #0d0d0d; /* Adjust the color as needed */
+}
+
+/* Hover effect */
+body:hover .cursor {
+    transform: translate(-50%, -50%) scale(3);
+}
+
+
+.logo-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10; /* Ensure the logo is on top */
+}
+
+.logo {
+    width: 15em; /* Adjust size as needed */
+    height: auto;
+}
+.svg-container {
+    position: absolute; /* Position relative to body */
+    top: 50%; /* Center vertically */
+    left: -35%; /* Move to the left side */
+    transform: translateY(-50%); /* Adjust vertical centering */
+    pointer-events: none; /* Ensure it does not block other elements */
+    z-index: 0; /* Ensure the SVG is behind other content */
+}
+
+#rotating-svg {
+    width: 140em;
+    height: 140em;
+    animation: rotate 30s linear infinite; /* Adjust the duration as needed */
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes glowAndFlip {
+    0% {
+        opacity: 1;
+        
+        text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+    }
+    50% {
+        opacity: 1;
+        
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        opacity: 1;
+        
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    }
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    margin: 0 auto;
+    gap: 100px;
+    animation:  glowAndFlip 4s ease-in-out forwards infinite;
+    animation-delay: 0.5s; /* Add a delay before the animation starts */
+    opacity: 0;
+}
+
+.meet {
+    font-size: 7em;
+    font-weight: bold;
+    z-index: 2;
+    position: relative;
+    margin-left: 0; /* Align "MEET" to the left edge */
+    animation: fadeInScaleUp 5s ease-in-out forwards;
+    top: 30px;
+    left: -2.5em;
+}
+
+.project {
+    font-size: 7em;
+    font-weight: bold;
+    z-index: 2;
+    position: relative;
+    margin: 0;
+    animation: fadeInScaleUp 5s ease-in-out forwards;
+    top: 30px;
+    left: -0.4em;
+}
+.web {
+    font-size: 7em;
+    font-weight: bold;
+    z-index: 2;
+    position: relative;
+    margin: 0;
+    animation: fadeInScaleUp 5s ease-in-out forwards;
+    top: 30px;
+    right: -1.7em;
+}
+.meet::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 2.5em;
+    height: 10px;
+    background: white;
+    transform: translateY(-50%);
+}
+.project::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 2.5em;
+    height: 10px;
+    background: white;
+    transform: translateY(-50%);
+}
+.meet::after {
+    right: -10.5em;
+}
+
+.project::after {
+    left: -3em;
+}
+
+.description {
+    font-size: 2em; /* Adjust font size to fit two lines */
+    font-weight: bold;
+    z-index: 1; /* Ensure the description is in front of the SVG */
+    text-align: left; /* Align text to the left */
+     /* Add space between MEET and description */
+    max-width: 400px; 
+    position: fixed;
+    left: 2.5em;
+}
+
+.bottom-left-text {
+    position: absolute;
+    bottom: 20px;
+    left: 50px;
+    z-index: 10; /* Ensure the text is on top */
+    font-size: 1.5em;
+    font-weight: medium;
+    color: rgba(255, 255, 255, 0.553);
+}
